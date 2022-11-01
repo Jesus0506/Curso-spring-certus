@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${TituloPagina}"></title>
+</head>
+<body>
+ 	
+	<h1 th:text="${Titulo}"></h1>
+	<hr>
+	<div>
+		<ul th:each="personaje : ${Listita}">
+			<li th:text="${personaje.nombre}"></li>
+			<li th:text="${personaje.alias}"></li>
+			<li th:text="${personaje.tipoFruta}"></li>
+			<li th:text="${personaje.habilidad}"></li>
+			<li th:text="${personaje.tripulacion}"></li>
+			<li th:text="${personaje.recompensa}"></li>
+		</ul>
+	</div>
+
+	
+</body>
+</html>
