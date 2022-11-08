@@ -5,15 +5,14 @@ import java.util.List;
 
 //import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-//import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;
 
 import com.certus.spring.models.Personaje;
 import com.certus.spring.models.Response;
 
-//@Service
-@Component("servicio1")
-//@Primary //declara la siguiente clase como la principal a usar por el InterfacePersonajeService
-public class PersonajeService implements IPersonajeService{
+@Service
+@Component("servicio2")
+public class PersonajeService2 implements IPersonajeService{
 
 	// CREANDO METODO CREARPERSONAJE
 	public Response<Personaje> crearPersonaje() {
@@ -27,12 +26,12 @@ public class PersonajeService implements IPersonajeService{
 
 		Personaje personaje1 = new Personaje();
 		// Agregando datos a los atrinutos de personaje1
-		personaje1.setNombre("Luffy");
-		personaje1.setAlias("Luffy Alias");
-		personaje1.setTipoFruta("Luffy Tipo Fruta");
-		personaje1.setHabilidad("Luffy Habilidad");
-		personaje1.setTripulacion("Luffy Tripulacion");
-		personaje1.setRecompensa("414 123 344");
+		personaje1.setNombre("Luffy v2");
+		personaje1.setAlias("Luffy Alias v2");
+		personaje1.setTipoFruta("Luffy Tipo Fruta v2");
+		personaje1.setHabilidad("Luffy Habilidad v2");
+		personaje1.setTripulacion("Luffy Tripulacion v2");
+		personaje1.setRecompensa("414 123 344  v2");
 
 		// Instanciamos un personaje2 del tipo Personaje
 		Personaje personaje2 = new Personaje();
@@ -82,7 +81,7 @@ public class PersonajeService implements IPersonajeService{
 	public String demoMetodo(Personaje p) {
 		String respuesta = "procesando";
 		if (p != null) {
-			respuesta = "Todo OK";
+			respuesta = "Todo OK Servicio2";
 		}
 		
 		return respuesta;
