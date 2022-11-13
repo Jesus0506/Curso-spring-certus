@@ -3,27 +3,64 @@ package com.certus.spring.service;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-//import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;
 
 import com.certus.spring.models.Personaje;
 import com.certus.spring.models.Response;
+import com.certus.spring.repository.IPersonaje;
 
-//@Service
+@Service
 @Component("servicio1")
-//@Primary //declara la siguiente clase como la principal a usar por el InterfacePersonajeService
+@Primary //declara la siguiente clase como la principal a usar por el InterfacePersonajeService
 public class PersonajeService implements IPersonajeService{
+	
+	@Autowired
+	IPersonaje personajeRepository;
 
 	// CREANDO METODO CREARPERSONAJE
-	public Response<Personaje> crearPersonaje() {
-
+	public Response<Personaje> crearPersonaje(Personaje personajeRecibido) {
+		
 		Response<Personaje> response = new Response<>();
+		
+		//Personaje p = personajeRepository.save(personajeRecibido);
+			
+		try {
+			Personaje p = personajeRepository.save(personajeRecibido);
+			response.setEstado(true);
+			response.setMensaje("Creado Correctamente");
+			
+		} catch (Exception e) {
+			response.setEstado(false);
+			response.setMensaje(e.getMessage());
+		}
+		
+		//Validacion de lista de personaje
+		/*if(p != null) {
+			response.setEstado(true);
+			response.setMensaje("Creado Correctamente");
+		}else {
+			response.setEstado(false);
+			response.setMensaje("Se produjo un error al crear los personajes");
+		}*/
 
-		boolean estadoCreacion = false;
+		return response;
+	}
 
-		// Instanciando una lista del tipo List del tipo Personaje
+	public String editarPersonaje() {
+		return "Se a editado un personaje";
+		
+	}
+	
+	
+	@Override
+	public Response<Personaje> listarPersonaje() {
+		
 		List<Personaje> listita = new ArrayList<>();
+		
+		Response<Personaje> response = new Response<>();
 
 		Personaje personaje1 = new Personaje();
 		// Agregando datos a los atrinutos de personaje1
@@ -51,41 +88,21 @@ public class PersonajeService implements IPersonajeService{
 		personaje3.setHabilidad("Luffy Habilidad 3");
 		personaje3.setTripulacion("Luffy Tripulacion 3");
 		personaje3.setRecompensa("567 445 323 244");
+		
+		//Validando si hay un personaje
+		
 
 		// Agregando un personaje a la lista
 		listita.add(personaje1);
 		listita.add(personaje2);
 		listita.add(personaje3);
 		
-		//Validacion de lista de personaje
-		if(listita.size()>0) {
-			estadoCreacion = true;
-			response.setEstado(estadoCreacion);
-			response.setMensaje("Creado Correctamente");
-			response.setData(listita);
-		}else {
-			estadoCreacion = true;
-			response.setEstado(estadoCreacion);
-			response.setMensaje("Se produjo un error al crear los personajes");
-		}
-			
-			
+		
+		response.setEstado(true);
+		response.setMensaje("Creado Correctamente");
+		response.setData(listita);
 		
 		return response;
-	}
-
-	public String editarPersonaje() {
-		return "Se a editado un personaje";
-		
-	}
-	
-	public String demoMetodo(Personaje p) {
-		String respuesta = "procesando";
-		if (p != null) {
-			respuesta = "Todo OK";
-		}
-		
-		return respuesta;
 	}
 	
 }

@@ -5,17 +5,17 @@ import java.util.List;
 
 //import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+//import org.springframework.stereotype.Service;
 
 import com.certus.spring.models.Personaje;
 import com.certus.spring.models.Response;
 
-@Service
+//@Service
 @Component("servicio2")
 public class PersonajeService2 implements IPersonajeService{
 
 	// CREANDO METODO CREARPERSONAJE
-	public Response<Personaje> crearPersonaje() {
+	public Response<Personaje> crearPersonaje(Personaje p) {
 
 		Response<Personaje> response = new Response<>();
 
@@ -77,14 +77,12 @@ public class PersonajeService2 implements IPersonajeService{
 		return "Se a editado un personaje";
 		
 	}
-	
-	public String demoMetodo(Personaje p) {
-		String respuesta = "procesando";
-		if (p != null) {
-			respuesta = "Todo OK Servicio2";
-		}
-		
-		return respuesta;
+
+	@Override
+	public Response<Personaje> listarPersonaje() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 	
 }
