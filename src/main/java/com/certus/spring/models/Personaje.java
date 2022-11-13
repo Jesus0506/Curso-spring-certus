@@ -1,11 +1,26 @@
 package com.certus.spring.models;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Personaje {
+	//Personaliza aviso con "message"
+	@NotEmpty(message = "Completar el nombre del personaje")
 	private String nombre;
+	
+	@Size(min = 5, message = "El alias debe contener al menos 5 caracteres")
 	private String alias;
+	
+	@NotEmpty
 	private String tipoFruta;
+	
+	@NotEmpty
 	private String habilidad;
+	
+	@NotEmpty
 	private String tripulacion;
+	
+	@NotEmpty
 	private String recompensa;
 	
 
